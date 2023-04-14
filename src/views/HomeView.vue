@@ -1,5 +1,5 @@
 <script setup>
-import User from '../components/User.vue'
+import UserList from '../components/UserList.vue';
 </script>
 
 <script>
@@ -7,19 +7,20 @@ import User from '../components/User.vue'
     data() {
         return {
             user: {
-              firstName: 'Sue',
-              surname: 'Stone',
-              email: 'sample@email.com',
-              phone: '07777772111',
-              image: 'https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg'
-        }
-    }
-  }
+                firstName: "Sue",
+                surname: "Stone",
+                email: "sample@email.com",
+                phone: "07777772111",
+                image: "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
+            }
+        };
+    },
+    components: { UserList }
 }
 </script>
 
 <template>
   <main>
-   <User :user=user />
+   <UserList/>
   </main>
 </template>
