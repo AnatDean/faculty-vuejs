@@ -26,12 +26,28 @@ import User from './User.vue';
 </script>
 
 <template>
-     <ul>
+     <ul id="userlist">
             <User v-for="user in users" key={{user.phone}} :user=user />
     </ul>
 
 </template>
 
-<style>
+<style lang="scss">
+    #userlist {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        .user {
+            width: 30em;
+            height: fit-content;
+            a {
+                color: #C060A1;
+                &:focus, &:hover {
+                   color: #F0CAA3
+                }
+            }
+           
+        }
+    }
 
 </style>
