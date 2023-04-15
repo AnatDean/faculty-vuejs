@@ -1,12 +1,11 @@
-import { describe, it, test, expect } from 'vitest'
+import { test, expect } from 'vitest'
 
-import { mount, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import UserList from '../UserList.vue'
 
 test('sanity check', () => {
   expect(Math.sqrt(4)).toBe(2)
 })
-
 
 test('will extract useful info from user data', () => {
   const wrapper = shallowMount(UserList);

@@ -1,19 +1,20 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink } from 'vue-router'
 export default {
     name: 'NavLink',
     props: {
         path: { type: String },
         label: { type: String }
+    },
+    components: {
+        RouterLink
     }
 }
 </script>
 
-
-
-
-
-<template><RouterLink class='navLink' :to="`${path}`">{{ label }}</RouterLink></template>
+<template>
+    <RouterLink class='navLink' :to="`${path}`">{{ label }}</RouterLink>
+</template>
 
 <style lang="scss">
     .navLink  {

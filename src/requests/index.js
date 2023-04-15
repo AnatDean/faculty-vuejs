@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const fetchUsers = (page, n=10, params) => {
+export const fetchUsers = (page, n = 10, params) => {
 
     return axios.get(`https://randomuser.me/api`, {
        params:{
@@ -10,7 +10,7 @@ export const fetchUsers = (page, n=10, params) => {
         ...(params && {inc: params.join(',')})
        }
     })
-    .then(({data:{info, results}}) => {
+    .then(({ data: { results } } ) => {
         return results
     })
 }

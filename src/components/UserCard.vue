@@ -1,6 +1,6 @@
 <script >
 export default {
-    name: 'User',
+    name: 'UserCard',
     props: {
         user: {type: Object}
     }

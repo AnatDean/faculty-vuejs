@@ -1,6 +1,6 @@
 <script>
 import { fetchUsers } from '../requests/index'
-import User from './User.vue';
+import User from './UserCard.vue';
 import NavLink from './NavLink.vue';
 
  export default {
@@ -35,7 +35,7 @@ import NavLink from './NavLink.vue';
             const users = await fetchUsers(page, n, params)
             this.users = users.map(this.extractUserInfo);
         },
-        extractUserInfo({ email, name: { first, last }, phone, picture: { medium }, ...rest }) {
+        extractUserInfo({ email, name: { first, last }, phone, picture: { medium } }) {
             return { email, firstName: first, lastName: last, phone, image: medium };
         }, 
     },
@@ -58,7 +58,7 @@ import NavLink from './NavLink.vue';
     <div id="main">
         <h2>You are viewing staff: {{ currentRangeInView.from }} to {{ currentRangeInView.to }}</h2>
         <ul id="userlist">
-                <User v-for="user in users" key={{user.phone}} :user=user />
+                <User v-for="user in users" :key=user.phone :user=user />
         </ul>
 
         <NavLink v-if="page > 1" :path="`/${parseInt(page) - 1}`" :label="`Go back`"/>
