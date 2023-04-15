@@ -11,7 +11,7 @@ export default {
   <li class="user">
       <img :src="user.image" alt="firstname surname picture"/>
       <div class="user--details">
-    <h3>{{user.firstName}} {{ user.lastName }}</h3>
+    <h3 class="user--name">{{user.firstName}} {{ user.lastName }}</h3>
     <address>
         <p>Email: <a :href="`mailto:${user.email}`">{{user.email}}</a></p>
         <p>Phone: <a :href="`tel:${user.phone}`">{{user.phone}}</a></p>
@@ -19,29 +19,3 @@ export default {
 </div>
   </li>
 </template>
-
-<style lang='scss' scoped>
-    .user {
-        border: solid 1px coral;
-        list-style: none;
-        padding: 1em;
-        display: flex;
-        h3 {
-            font-size: 1.5em;
-        }
-        .user--details { 
-            padding: 0.5em;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        img {
-        height: 150px;
-        }
-    }
-
- 
-
-
-</style>

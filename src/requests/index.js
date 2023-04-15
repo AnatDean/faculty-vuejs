@@ -6,7 +6,7 @@ export const fetchUsers = (page, params) => {
        params:{
         seed:'bristol',
          page,
-        results: '10',
+        results: '12',
         ...(params && {inc: params.join(',')})
        }
     })

@@ -50,19 +50,43 @@ import Button from './Button.vue';
         flex-flow: row wrap;
     }
     #userlist {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
+        
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+        justify-content: center;
+        list-style: none;
+        padding: 0;
         gap: 1em;
+        margin: 1em 0;
         .user {
-            width: 30em;
+            background-color: rgb(255,255,255);
+            box-shadow: 1px 3px 3px 0 rgba(0,0,0,.1);
             height: fit-content;
-            a {
-                color: #C060A1;
-                &:focus, &:hover {
-                   color: #F0CAA3
-                }
+            padding: 1em;
+            display: flex;
+            line-height: 175%;
+        h3 {
+        font-size: 2em;
+        }
+        .user--details { 
+        padding-left: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        }
+
+        img {
+            height: 150px;
+        }
+            
+        a {
+            color: #C060A1;
+            &:focus, &:hover {
+               text-decoration: none;
+               border: solid 1px #C060A1;
             }
+        }
            
         }
     }

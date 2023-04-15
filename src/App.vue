@@ -4,7 +4,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-   This is my title
+   <h1>University of Bristol Faculty</h1>
   </header>
   <RouterView />
 </template>
+
+<style>
+  header {
+    border-bottom: 1px solid #C060A1;
+  }
+</style>

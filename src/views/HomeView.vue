@@ -24,3 +24,9 @@ import UserList from '../components/UserList.vue';
    <UserList/>
   </main>
 </template>
+
+<style>
+  main {
+    margin:  auto
+  }
+</style>
