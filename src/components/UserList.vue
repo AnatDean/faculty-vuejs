@@ -8,27 +8,27 @@ import Button from './Button.vue';
         return {
             users: [],
             page: 1,
-            isLoading: false
+            isLoading: false,
+            desiredUserDetails: ['name', 'email', 'phone', 'picture']
         };
     },
     async mounted() {
-       const users = await this.getUsers(this.page);
+       const users = await this.getUsers(this.page, this.desiredUserDetails);
        this.users = users;
     },
     methods: {
-        async getUsers() {
-            const users = await fetchUsers()
+        async getUsers(page,params) {
+            const users = await fetchUsers(page,params)
             return users.map(this.extractUserInfo);
         },
-        extractUserInfo({ email, name: { first, last }, phone, picture: { medium } }) {
+        extractUserInfo({ email, name: { first, last }, phone, picture: { medium }, ...rest }) {
             return { email, firstName: first, lastName: last, phone, image: medium };
         },
         async getMoreUsers() {
             this.isLoading = true;
             this.page++
-            const users = await fetchUsers(this.page);
-            const formattedUsers = users.map(this.extractUserInfo);
-            this.users = this.users.concat(formattedUsers)
+            const users = await this.getUsers(this.page, this.desiredUserDetails);
+            this.users = this.users.concat(users)
         }
     },
     components: { User, Button }
