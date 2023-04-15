@@ -1,46 +1,68 @@
 <script>
 import { fetchUsers } from '../requests/index'
 import User from './User.vue';
-import Button from './Button.vue';
+import NavLink from './NavLink.vue';
+
  export default {
     name: 'UserList',
+    props: {
+        page: {
+            type: String,
+            default: '1'
+        }
+    },
     data() {
         return {
             users: [],
-            page: 1,
             isLoading: false,
+            nPerRequest: 12,
             desiredUserDetails: ['name', 'email', 'phone', 'picture']
         };
     },
     async mounted() {
-       const users = await this.getUsers(this.page, this.desiredUserDetails);
-       this.users = users;
+        await this.getUsers(this.page, this.nPerRequest, this.desiredUserDetails);
     },
+    watch:{
+        '$route.params.page' (to, from){
+            if (to !== from) {
+                this.getUsers(to, this.nPerRequest, this.desiredUserDetails)
+            }
+        }   
+    }, 
+
     methods: {
-        async getUsers(page,params) {
-            const users = await fetchUsers(page,params)
-            return users.map(this.extractUserInfo);
+        async getUsers(page,n,params) {
+            const users = await fetchUsers(page, n, params)
+            this.users = users.map(this.extractUserInfo);
         },
         extractUserInfo({ email, name: { first, last }, phone, picture: { medium }, ...rest }) {
             return { email, firstName: first, lastName: last, phone, image: medium };
-        },
-        async getMoreUsers() {
-            this.isLoading = true;
-            this.page++
-            const users = await this.getUsers(this.page, this.desiredUserDetails);
-            this.users = this.users.concat(users)
+        }, 
+    },
+
+    computed: {
+        currentRangeInView() {
+            if (this.page === '1') return {from : 1, to: this.nPerRequest};
+
+            const numberPage = parseInt(this.page)
+            const previousPage = numberPage -1
+
+            return {from: previousPage * this.nPerRequest + 1, to: numberPage * this.nPerRequest }
         }
     },
-    components: { User, Button }
+    components: { User, NavLink }
 }
 </script>
 
 <template>
     <div id="main">
+        <h2>You are viewing staff: {{ currentRangeInView.from }} to {{ currentRangeInView.to }}</h2>
         <ul id="userlist">
                 <User v-for="user in users" key={{user.phone}} :user=user />
         </ul>
-        <Button :onClick="getMoreUsers" label="See more" />
+
+        <NavLink v-if="page > 1" :path="`/${parseInt(page) - 1}`" :label="`Go back`"/>
+        <NavLink :path="`/${parseInt(page) + 1}`" :label="`See more`"/>
     </div>
 </template>
 

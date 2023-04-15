@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export const fetchUsers = (page, params) => {
+export const fetchUsers = (page, n=10, params) => {
 
     return axios.get(`https://randomuser.me/api`, {
        params:{
         seed:'bristol',
          page,
-        results: '12',
+        results: n,
         ...(params && {inc: params.join(',')})
        }
     })

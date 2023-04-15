@@ -1,28 +1,36 @@
 <script>
+import { RouterLink, RouterView } from 'vue-router'
 export default {
-    name: 'Button',
+    name: 'NavLink',
     props: {
-        onClick: {type: Function},
-        label: {type:String}
+        path: { type: String },
+        label: { type: String }
     }
 }
 </script>
 
-<template><button @click=onClick>{{ label }}</button></template>
+
+
+
+
+<template><RouterLink class='navLink' :to="`${path}`">{{ label }}</RouterLink></template>
 
 <style lang="scss">
-    button  {
+    .navLink  {
         background-color: rgb(162,44,51);
         color: rgb(255,255,255);
         border: none;
         height: 2em;
         width: 15%;
         font-size: 1.2em;
+        text-align: center;
         margin: 0 auto;
+        font-weight: 600;
         &:hover, &:focus {
             color: rgb(162,44,51);
             background-color: rgb(255,255,255);
             border: rgb(162,44,51) solid 1px;
+            
         }
         
     }
