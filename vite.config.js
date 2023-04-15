@@ -13,6 +13,6 @@ export default defineConfig({
     }
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/faculty-vuejs/'
-    : '/'
+  ? 'anatdean.github.io/faculty-vuejs/'
+  : '/'
 })
