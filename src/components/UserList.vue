@@ -56,7 +56,7 @@ import NavLink from './NavLink.vue';
 
 <template>
     <div id="main">
-        <h2>You are viewing staff: {{ currentRangeInView.from }} to {{ currentRangeInView.to }}</h2>
+        <h2>Viewing staff: {{ currentRangeInView.from }} to {{ currentRangeInView.to }}</h2>
         <ul id="userlist">
                 <User v-for="user in users" :key=user.phone :user=user />
         </ul>
@@ -75,7 +75,9 @@ import NavLink from './NavLink.vue';
         
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+        @media only screen and (min-width: 600px) {
+            grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+        }
         justify-content: center;
         list-style: none;
         padding: 0;
@@ -85,13 +87,13 @@ import NavLink from './NavLink.vue';
         .user {
             background-color: rgb(255,255,255);
             box-shadow: 1px 3px 3px 0 rgba(0,0,0,.1);
-            height: fit-content;
             padding: 1em;
             display: flex;
             line-height: 175%;
+            white-space: pre-wrap;
         
         h3 {
-        font-size: 2em;
+            font-size: 2em;
         }
 
         p {
@@ -103,8 +105,12 @@ import NavLink from './NavLink.vue';
         }
             
         a {
+            font-size: 0.55em;
+            color: rgb(162,44,51);
 
-            color: rgb(162,44,51);;
+            @media only screen and (min-width: 600px) {
+                font-size: 1em;
+            }
             &:focus, &:hover {
                text-decoration: none;
                border: solid 1px #C060A1;

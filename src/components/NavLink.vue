@@ -21,8 +21,11 @@ export default {
         background-color: rgb(162,44,51);
         color: rgb(255,255,255);
         border: none;
-        height: 2em;
-        width: 15%;
+        @media only screen and (min-width: 600px) {
+            height: 2em;
+            width: 15%;
+        }
+        padding: 0.2em;
         font-size: 1.2em;
         text-align: center;
         margin: 0 auto;
