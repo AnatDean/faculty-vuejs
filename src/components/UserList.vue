@@ -14,7 +14,7 @@ import NavLink from './NavLink.vue';
     data() {
         return {
             users: [],
-            isLoading: false,
+            isLoading: true,
             nPerRequest: 12,
             desiredUserDetails: ['name', 'email', 'phone', 'picture']
         };
@@ -32,8 +32,10 @@ import NavLink from './NavLink.vue';
 
     methods: {
         async getUsers(page,n,params) {
+            this.isLoading = true
             const users = await fetchUsers(page, n, params)
             this.users = users.map(this.extractUserInfo);
+            this.isLoading = false
         },
         extractUserInfo({ email, name: { first, last }, phone, picture: { medium } }) {
             return { email, firstName: first, lastName: last, phone, image: medium };
@@ -57,19 +59,36 @@ import NavLink from './NavLink.vue';
 <template>
     <div id="main">
         <h2>Viewing staff: {{ currentRangeInView.from }} to {{ currentRangeInView.to }}</h2>
+        <div v-if="isLoading" class="loader"></div>
         <ul id="userlist">
                 <User v-for="user in users" :key=user.phone :user=user />
         </ul>
-
-        <NavLink v-if="page > 1" :path="`/${parseInt(page) - 1}`" :label="`Go back`"/>
-        <NavLink :path="`/${parseInt(page) + 1}`" :label="`See more`"/>
+        <nav id="nav">
+            <NavLink v-if="page > 1" :path="`/${parseInt(page) - 1}`" :label="`Go back`"/>
+            <NavLink :path="`/${parseInt(page) + 1}`" :label="`See more`"/>
+        </nav>
     </div>
 </template>
 
 <style lang="scss">
-    #main {
+    nav {
+        width: 100%;
         display: flex;
-        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+    .loader {
+        border: 16px solid #f3f3f3; 
+        border-top: 16px solid rgb(162,44,51); 
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        margin: 0 auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
     #userlist {
         
@@ -92,39 +111,39 @@ import NavLink from './NavLink.vue';
             line-height: 175%;
             white-space: pre-wrap;
         
-        h3 {
-            font-size: 2em;
-        }
+            h3 {
+                font-size: 2em;
+            }
 
-        p {
-            color: black;
-        }
+            p {
+                color: black;
+            }
 
-        img {
-            height: 150px;
-        }
+            img {
+                height: 150px;
+            }
             
-        a {
-            font-size: 0.55em;
-            color: rgb(162,44,51);
+            a {
+                font-size: clamp(0.55rem, 0.8rem, 1.5rem);
+                color: rgb(162,44,51);
 
-            @media only screen and (min-width: 600px) {
-                font-size: 1em;
+                @media only screen and (min-width: 600px) {
+                    font-size: 1em;
+                }
+                &:focus, &:hover {
+                    text-decoration: none;
+                    border: solid 1px #C060A1;
+                }
             }
-            &:focus, &:hover {
-               text-decoration: none;
-               border: solid 1px #C060A1;
+
+            .user--details { 
+                padding-left: 1em;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                word-wrap: break-word;  
             }
         }
-
-        .user--details { 
-            padding-left: 1em;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            word-wrap: break-word;  
-        }
-    }
 }
 
 </style>
