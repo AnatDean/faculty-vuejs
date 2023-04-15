@@ -13,8 +13,8 @@ export default {
       <div class="user--details">
     <h3>{{user.firstName}} {{ user.lastName }}</h3>
     <address>
-        <p>Email: <a href="mailto:sample@email.com">{{user.email}}</a></p>
-        <p>Phone: <a href="tel:07777772111">{{user.phone}}</a></p>
+        <p>Email: <a :href="`mailto:${user.email}`">{{user.email}}</a></p>
+        <p>Phone: <a :href="`tel:${user.phone}`">{{user.phone}}</a></p>
     </address>
 </div>
   </li>
