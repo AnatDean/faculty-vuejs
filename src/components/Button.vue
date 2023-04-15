@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss">
     button  {
-        background-color: #C060A1;;
+        background-color: rgb(162,44,51);
         color: rgb(255,255,255);
         border: none;
         height: 2em;
@@ -20,9 +20,9 @@ export default {
         font-size: 1.2em;
         margin: 0 auto;
         &:hover, &:focus {
-            color: #C060A1;;
+            color: rgb(162,44,51);
             background-color: rgb(255,255,255);
-            border: #C060A1 solid 1px;
+            border: rgb(162,44,51) solid 1px;
         }
         
     }

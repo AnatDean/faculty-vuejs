@@ -59,6 +59,7 @@ import Button from './Button.vue';
         padding: 0;
         gap: 1em;
         margin: 1em 0;
+
         .user {
             background-color: rgb(255,255,255);
             box-shadow: 1px 3px 3px 0 rgba(0,0,0,.1);
@@ -66,14 +67,13 @@ import Button from './Button.vue';
             padding: 1em;
             display: flex;
             line-height: 175%;
+        
         h3 {
         font-size: 2em;
         }
-        .user--details { 
-        padding-left: 1em;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+
+        p {
+            color: black;
         }
 
         img {
@@ -81,14 +81,22 @@ import Button from './Button.vue';
         }
             
         a {
-            color: #C060A1;
+
+            color: rgb(162,44,51);;
             &:focus, &:hover {
                text-decoration: none;
                border: solid 1px #C060A1;
             }
         }
-           
+
+        .user--details { 
+            padding-left: 1em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            word-wrap: break-word;  
         }
     }
+}
 
 </style>
