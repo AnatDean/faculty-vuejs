@@ -37,8 +37,8 @@ import NavLink from './NavLink.vue';
             this.users = users.map(this.extractUserInfo);
             this.isLoading = false
         },
-        extractUserInfo({ email, name: { first, last }, phone, picture: { medium } }) {
-            return { email, firstName: first, lastName: last, phone, image: medium };
+        extractUserInfo({ email, name: { first, last }, phone, picture: { large } }) {
+            return { email, firstName: first, lastName: last, phone, image: large };
         }, 
     },
 
@@ -95,7 +95,7 @@ import NavLink from './NavLink.vue';
         width: 100%;
         display: grid;
         @media only screen and (min-width: 600px) {
-            grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
         }
         justify-content: center;
         list-style: none;
@@ -107,10 +107,10 @@ import NavLink from './NavLink.vue';
             background-color: rgb(255,255,255);
             box-shadow: 1px 3px 3px 0 rgba(0,0,0,.1);
             padding: 1em;
-            display: flex;
             line-height: 175%;
+            text-align: center;
             white-space: pre-wrap;
-        
+            
             h3 {
                 font-size: 2em;
             }
@@ -120,7 +120,9 @@ import NavLink from './NavLink.vue';
             }
 
             img {
-                height: 150px;
+                height: 200px;
+                width: 200px;
+                margin-bottom: 10px;
             }
             
             a {
@@ -137,8 +139,9 @@ import NavLink from './NavLink.vue';
             }
 
             .user--details { 
-                padding-left: 1em;
+                text-align: start;
                 display: flex;
+                gap: 0.5em;
                 flex-direction: column;
                 justify-content: space-between;
                 word-wrap: break-word;  
