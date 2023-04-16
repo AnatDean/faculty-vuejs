@@ -10,7 +10,7 @@ import UserList from '../components/UserList.vue';
 
 <template>
   <main>
-   <UserList :key="$route.params.page" :page=this.$route.params.page />
+   <UserList :key="$route.params.page" :page=$route.params.page />
   </main>
 </template>
 
